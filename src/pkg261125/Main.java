@@ -6,13 +6,18 @@
 package pkg261125;
 
 /**
+ * Clase principal que contiene el punto de entrada de la aplicación.
  *
  * @author megac
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * Método principal (main) que inicia la aplicación.
+     * Utiliza SwingUtilities.invokeLater para asegurar que la interfaz gráfica
+     * se cree y actualice en el hilo de despacho de eventos (EDT).
+     *
+     * @param args los argumentos de la línea de comandos (no utilizados).
      */
     public static void main(String[] args) {
          javax.swing.SwingUtilities.invokeLater(() -> new GuessGameGUI());

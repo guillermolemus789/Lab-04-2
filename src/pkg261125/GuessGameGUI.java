@@ -16,21 +16,38 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
+ * Interfaz Gráfica de Usuario (GUI) para el juego de adivinar el número.
+ * Hereda de JFrame y gestiona la visualización y la interacción con el usuario.
  *
  * @author megac
  */
   public class GuessGameGUI extends JFrame {
 
+    /** Instancia de la lógica del juego. */
     private final GuessGame game;
+
+    /** Campo de texto para que el usuario ingrese su número. */
     private JTextField inputNumber;
+
+    /** Área de texto para mostrar el historial de intentos. */
     private JTextArea logArea;
+
+    /** Etiqueta para mostrar los intentos restantes. */
     private JLabel lblAttempts;
 
+    /**
+     * Constructor que inicializa la lógica del juego y configura la interfaz gráfica.
+     * Crea una nueva instancia de GuessGame con 5 intentos máximos.
+     */
     public GuessGameGUI() {
         game = new GuessGame(5); // máximo 5 intentos
         setupUI();
     }
 
+    /**
+     * Configura los componentes de la interfaz de usuario.
+     * Establece el título, tamaño, layout y agrega los controles necesarios.
+     */
     private void setupUI() {
         setTitle("Juego Adivina el Número");
         setSize(400, 350);
@@ -63,6 +80,13 @@ import javax.swing.JTextField;
         setVisible(true);
     }
 
+    /**
+     * Maneja el evento de intento de adivinanza (clic en el botón "Intentar").
+     * Lee el número ingresado, llama a la lógica del juego y actualiza la interfaz.
+     * Muestra mensajes de error si la entrada no es un número válido.
+     *
+     * @param e El evento de acción disparado por el botón.
+     */
     private void handleGuess(ActionEvent e) {
         try {
             int number = Integer.parseInt(inputNumber.getText());
@@ -82,6 +106,9 @@ import javax.swing.JTextField;
         }
     }
 
+    /**
+     * Actualiza el área de registro (logArea) con el historial de intentos actual del juego.
+     */
     private void refreshLog() {
         logArea.setText("");
         for (GuessLogEntry entry : game.getLog()) {
@@ -91,10 +118,12 @@ import javax.swing.JTextField;
         }
     }
 
+    /**
+     * Reinicia el juego y actualiza la interfaz a su estado inicial.
+     */
     private void resetGame() {
         game.resetGame();
         logArea.setText("");
         lblAttempts.setText("Intentos restantes: " + game.getAttemptsLeft());
     }
 }
-
